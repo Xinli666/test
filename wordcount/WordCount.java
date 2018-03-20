@@ -18,8 +18,8 @@ public class WordCount {
 		try{
 			reader = new BufferedReader(new FileReader(f));
 			String str=null;
-			while((str=reader.readLine())!=null)
-				result+=str.length();
+			while((str=reader.readLine())!=null)      
+				result+=str.length();          //字符总数就是读到每一行的字符串的长度
 		}
 		catch (FileNotFoundException e0){
 			e0.printStackTrace();
@@ -37,7 +37,7 @@ public class WordCount {
 		return result;
 	}
 	
-	public static int CountWord(File f){     //返回单词总数
+	public static int CountWord(File f){     //返回单词总数（不含-s的情况）
 		if(!f.exists())
 			return -1;
 		int result=0;
@@ -88,7 +88,7 @@ public class WordCount {
 				}
 				else if(flag==1&&((char)temp=='\n'||(char)temp=='\t'||(char)temp==','||(char)temp==' '||(char)temp=='\r')){
 					flag=0;
-					if(!arr.contains(str)){
+					if(!arr.contains(str)){               //在这边将与停用词相同的排除
 						result++;
 					}
 					str="";
@@ -218,7 +218,7 @@ public class WordCount {
 		BufferedWriter writer=null;
 		try{
 			writer=new BufferedWriter(new FileWriter(f));
-			writer.write(s);
+			writer.write(s);       //将内容写入
 		}
 		catch (FileNotFoundException e0){
 			e0.printStackTrace();
@@ -271,7 +271,7 @@ public class WordCount {
 		return StopWordList;
 	}
 	
-	public static ArrayList<String> traverse(String filepath){     //递归显示所有文件
+	public static ArrayList<String> traverse(String filepath){     //递归显示路径下所有文件名
 		File root = new File(filepath);  
 	    File[] files = root.listFiles();
 	    ArrayList <String> filelist=new ArrayList<String>();
@@ -308,7 +308,7 @@ public class WordCount {
 		}
 		else{
 			int i=0;
-			for(i=0;i<args.length;++i){             //遍历args，用四个标志记录出现的运算
+			for(i=0;i<args.length;++i){             //遍历args，用标志记录出现的运算
 				if(args[i].equals("-c")){
 					is_c=true;
 				}
